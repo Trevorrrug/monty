@@ -32,5 +32,9 @@ typedef struct instruction_s
 int is_integer(char *str);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+void free_stack(stack_t *stack);
+int execute_instruction(char *opcode, stack_t **stack,
+		unsigned int line_number);
+int process_file(FILE *file, stack_t **stack);
 
 #endif
