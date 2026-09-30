@@ -278,3 +278,35 @@ void mul(stack_t **stack, unsigned int line_number)
 
 	free(top);
 }
+
+/**
+ * mod - computes the remainder of the top two elements
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
+void mod(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top;
+	stack_t *second;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	top = *stack;
+	second = top->next;
+
+	if (top->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	second->n %= top->n;
+	second->prev = NULL;
+	*stack = second;
+
+	free(top);
+}
