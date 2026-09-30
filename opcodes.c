@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 
 /**
@@ -191,4 +193,36 @@ void nop(stack_t **stack, unsigned int line_number)
 {
 	(void)stack;
 	(void)line_number;
+}
+
+/**
+ * div - divides the second top element by the top element
+ * @stack: pointer to the stack
+ * @line_number: line number
+ */
+void divide(stack_t **stack, unsigned int line_number)
+{
+	stack_t *top;
+	stack_t *second;
+
+	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	top = *stack;
+	second = top->next;
+
+	if (top->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	second->n /= top->n;
+	second->prev = NULL;
+	*stack = second;
+
+	free(top);
 }

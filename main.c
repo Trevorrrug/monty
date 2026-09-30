@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <string.h>
 #include "monty.h"
 
 /**
@@ -39,6 +41,8 @@ int execute_instruction(char *opcode, stack_t **stack,
 		swap(stack, line_number);
 	else if (strcmp(opcode, "add") == 0)
 		add(stack, line_number);
+	else if (strcmp(opcode, "div") == 0)
+		divide(stack, line_number);
 	else if (strcmp(opcode, "nop") == 0)
 		nop(stack, line_number);
 	else
