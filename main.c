@@ -45,6 +45,8 @@ int execute_instruction(char *opcode, stack_t **stack,
 		divide(stack, line_number);
 	else if (strcmp(opcode, "sub") == 0)
 		sub(stack, line_number);
+	else if (strcmp(opcode, "mul") == 0)
+		mul(stack, line_number);
 	else if (strcmp(opcode, "nop") == 0)
 		nop(stack, line_number);
 	else
